@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomMap<K, V> {
+public class KeyValueStore<K, V> {
     private List<Node<K, V>> nodes;
 
-    public CustomMap() {
+    public KeyValueStore() {
         nodes = new ArrayList<>();
     }
 
+    // Node class for key-value pair
     private static class Node<K, V> {
         K key;
         V value;
@@ -18,6 +19,7 @@ public class CustomMap<K, V> {
         }
     }
 
+    // Method to get the value by key
     public V get(K key) {
         for (Node<K, V> node : nodes) {
             if (node.key.equals(key)) {
@@ -27,6 +29,7 @@ public class CustomMap<K, V> {
         return null;
     }
 
+    // Method to put a key-value pair
     public void put(K key, V value) {
         for (Node<K, V> node : nodes) {
             if (node.key.equals(key)) {
@@ -37,11 +40,13 @@ public class CustomMap<K, V> {
         nodes.add(new Node<>(key, value));
     }
 
+    // Method to get the size of the map
     public int size() {
         return nodes.size();
     }
 
-    public boolean contains(K key) {
+    // Method to check if a key exists
+    public boolean containsKey(K key) {
         for (Node<K, V> node : nodes) {
             if (node.key.equals(key)) {
                 return true;
@@ -49,13 +54,5 @@ public class CustomMap<K, V> {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        CustomMap<String, Integer> map = new CustomMap<>();
-        map.put("one", 1);
-        map.put("two", 2);
-        System.out.println("Size: " + map.size()); // Output: Size: 2
-        System.out.println("Value for 'one': " + map.get("one")); // Output: Value for 'one': 1
-        System.out.println("Contains 'two': " + map.contains("two")); // Output: Contains 'two': true
-    }
 }
+
